@@ -1,0 +1,232 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PranaOS.store — Checkout</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.258.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root{
+      --primary: #059669;
+      --secondary: #F97316;
+      --accent: #EAB308;
+      --bg: #FAFAFA;
+      --muted: #64748B;
+    }
+    .brand-grad { background: linear-gradient(90deg,var(--primary), #10B981); }
+    .btn-primary { background: linear-gradient(90deg,var(--primary), #059669); color: #fff; }
+    .btn-primary:hover { filter: brightness(1.04); }
+    body { background: var(--bg); }
+  </style>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23059669'/><text x='50' y='60' font-family='Inter' font-size='50' fill='white' text-anchor='middle'>Ｐ</text></svg>">
+</head>
+<body class="antialiased text-slate-900">
+
+  <!-- STICKY NAV (same as index.html) -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-slate-100">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <a href="./index.html" class="flex items-center gap-3">
+            <svg class="w-10 h-10" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="4" width="56" height="56" rx="10" fill="#059669"/>
+              <path d="M22 38c5-7 20-7 24 0" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="26" cy="24" r="5" fill="white"/>
+            </svg>
+            <span class="font-semibold text-lg"><span style="color:var(--primary)">PranaOS</span><span class="text-slate-900">.store</span></span>
+          </a>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-4">
+          <a href="./products.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">Templates</a>
+          <a href="./walkthroughs.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">Walkthroughs</a>
+          <a href="./about.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">About</a>
+          <a href="./blog.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">Blog</a>
+          <a href="./contact.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="./checkout.html" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-md text-white brand-grad btn-primary shadow-sm">Buy templates</a>
+          <button id="menuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:bg-slate-100" aria-label="Open menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
+      <div class="absolute inset-0 bg-slate-900/60" id="mobileBackdrop"></div>
+      <div class="absolute top-12 right-4 left-4 bg-white rounded-xl shadow-lg p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <svg class="w-9 h-9" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="56" height="56" rx="10" fill="#059669"/><circle cx="26" cy="24" r="5" fill="white"/></svg>
+            <span class="font-semibold">Menu</span>
+          </div>
+          <button id="mobileClose" class="p-2 text-slate-700 rounded hover:bg-slate-100">✕</button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="./index.html" class="px-3 py-2 rounded hover:bg-slate-50">Home</a>
+          <a href="./products.html" class="px-3 py-2 rounded hover:bg-slate-50">Templates</a>
+          <a href="./walkthroughs.html" class="px-3 py-2 rounded hover:bg-slate-50">Walkthroughs</a>
+          <a href="./about.html" class="px-3 py-2 rounded hover:bg-slate-50">About</a>
+          <a href="./blog.html" class="px-3 py-2 rounded hover:bg-slate-50">Blog</a>
+          <a href="./contact.html" class="px-3 py-2 rounded hover:bg-slate-50">Contact</a>
+          <a href="./faq.html" class="px-3 py-2 rounded hover:bg-slate-50">FAQ</a>
+          <a href="./terms.html" class="px-3 py-2 rounded hover:bg-slate-50">Terms</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CHECKOUT CONTENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h1 class="text-2xl font-bold">Checkout</h1>
+        <p class="text-slate-600 mt-2">Enter your email and coupon (if any). Paddle will handle payment and VAT where required.</p>
+
+        <div class="bg-white rounded-xl p-6 mt-6 shadow">
+          <label class="block text-sm font-medium">Your email</label>
+          <input id="emailInput" type="email" placeholder="you@example.com" class="mt-2 w-full border rounded px-3 py-2"/>
+
+          <label class="block text-sm font-medium mt-4">Coupon code</label>
+          <input id="couponInput" type="text" placeholder="INFLUENCERCODE (optional)" class="mt-2 w-full border rounded px-3 py-2"/>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <button onclick="buyNow(111111,'daily-calm')" class="px-4 py-2 rounded-md text-white brand-grad btn-primary">Buy Daily Calm — $9</button>
+            <button onclick="buyNow(222222,'money-control')" class="px-4 py-2 rounded-md text-white brand-grad btn-primary">Buy Money Control — $8.40</button>
+            <button onclick="buyNow(333333,'faster-job-wins')" class="px-4 py-2 rounded-md text-white brand-grad btn-primary">Buy Faster Job Wins — $8.40</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="bg-white rounded-xl p-6 shadow">
+        <h3 class="font-semibold">Order summary</h3>
+        <div class="mt-3 text-sm text-slate-600">Select a product above to open Paddle checkout. This page only triggers the overlay and passes coupon & email to Paddle.</div>
+
+        <div class="soft-divider mt-6"></div>
+
+        <div class="mt-4 text-sm text-slate-500">
+          <div><strong>Support:</strong> hello@pranaos.store</div>
+          <div class="mt-2"><strong>WhatsApp:</strong> <a href="https://wa.me/919234525942" target="_blank" rel="noopener">+91 92345 25942</a></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER (same as index.html) -->
+  <footer class="bg-white border-t mt-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid md:grid-cols-4 gap-6 items-start">
+      <div>
+        <div class="flex items-center gap-3">
+          <svg class="w-10 h-10" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="56" height="56" rx="10" fill="var(--primary)"/>
+            <circle cx="26" cy="24" r="5" fill="white"/>
+          </svg>
+          <div>
+            <div class="font-bold text-lg text-slate-900">PranaOS<span class="text-[color:var(--primary)]">.store</span></div>
+            <div class="text-sm text-slate-600">Practical Notion & Sheets templates • PDFs • AI prompt packs</div>
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-2 text-sm">
+          <div><strong>Email:</strong> <a href="mailto:hello@pranaos.store" class="text-[color:var(--primary)]">hello@pranaos.store</a></div>
+          <div><strong>WhatsApp:</strong> <a href="https://wa.me/919234525942" target="_blank" rel="noopener" class="text-[color:var(--primary)]">+91 92345 25942</a></div>
+        </div>
+
+        <div class="mt-4">
+          <a href="./affiliate.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-white brand-grad font-semibold">Partner / Get code</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="font-semibold mb-2">Templates</div>
+        <nav class="text-sm text-slate-600 flex flex-col gap-2">
+          <a href="./products.html">All templates</a>
+          <a href="./products.html#daily-calm">Daily Calm</a>
+          <a href="./products.html#money-control">Money Control</a>
+          <a href="./products.html#faster-job-wins">Faster Job Wins</a>
+        </nav>
+      </div>
+
+      <div>
+        <div class="font-semibold mb-2">Company</div>
+        <nav class="text-sm text-slate-600 flex flex-col gap-2">
+          <a href="./about.html">About</a>
+          <a href="./blog.html">Blog</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./support.html">Support</a>
+        </nav>
+      </div>
+
+      <div>
+        <div class="font-semibold mb-2">Help & Legal</div>
+        <nav class="text-sm text-slate-600 flex flex-col gap-2">
+          <a href="./faq.html">FAQ</a>
+          <a href="./privacy.html">Privacy</a>
+          <a href="./terms.html">Terms</a>
+          <a href="./refund.html">Refunds</a>
+          <a href="./docs.html">Docs</a>
+          <a href="./checkout.html">Checkout</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="border-t pt-4">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center text-sm text-slate-500 pb-6">
+        © <strong>PranaOS.store</strong> — Built for creators & learners • 
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS: paddle + shared scripts -->
+  <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+  <script>
+    Paddle.Setup({ vendor: 123456 }); // replace with your Paddle Vendor ID
+  </script>
+
+  <script>
+    // Mobile menu + fade + lucide init (same as index)
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
+    const mobileClose = document.getElementById('mobileClose');
+
+    menuBtn?.addEventListener('click', () => { mobileMenu.classList.remove('hidden'); });
+    mobileClose?.addEventListener('click', () => { mobileMenu.classList.add('hidden'); });
+    mobileBackdrop?.addEventListener('click', (e) => { if (e.target === mobileBackdrop) mobileMenu.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') mobileMenu.classList.add('hidden'); });
+
+    const faders = document.querySelectorAll('[data-fade]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    faders.forEach(el => io.observe(el));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try { lucide.createIcons(); } catch(e){ console.warn('Lucide init failed', e); }
+    });
+
+    function buyNow(productId, slug){
+      const email = document.getElementById('emailInput')?.value || undefined;
+      const couponFromInput = document.getElementById('couponInput')?.value || '';
+      // also accept ?coupon= from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const couponFromUrl = urlParams.get('coupon') || '';
+      const coupon = couponFromInput || couponFromUrl || null;
+
+      Paddle.Checkout.open({
+        product: productId,
+        email: email,
+        discountCode: coupon || null,
+        passthrough: JSON.stringify({ product_slug: slug, coupon })
+      });
+    }
+  </script>
+</body>
+</html>

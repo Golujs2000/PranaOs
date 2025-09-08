@@ -1,0 +1,370 @@
+<!-- Save as index.html (updated premium version) -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PranaOS.store — Contact</title>
+
+  <!-- Tailwind CDN (dev/prototype) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide icons (will convert data-lucide attributes to SVGs) -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.258.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root{
+      --primary: #059669;      /* Emerald (refined primary) */
+      --secondary: #F97316;    /* Coral (warmer secondary) */
+      --accent: #EAB308;       /* Gold accent */
+      --bg: #FAFAFA;           /* Soft neutral background */
+      --muted: #64748B;        /* Cool gray for text */
+    }
+
+    .brand-grad { background: linear-gradient(90deg,var(--primary), #10B981); }
+    .tag-grad { background: linear-gradient(90deg,var(--secondary), var(--accent)); }
+    .btn-ghost { background: white; border: 1px solid #E6E6E9; }
+    .btn-primary { background: linear-gradient(90deg,var(--primary), #059669); color: #fff; }
+    .btn-primary:hover { filter: brightness(1.04); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(5,150,105,0.12); }
+    .will-fade { opacity: 0; transform: translateY(8px); transition: all 520ms cubic-bezier(.2,.9,.2,1); }
+    .will-fade.in { opacity: 1; transform: translateY(0); }
+    .hover-grow { transition: transform 220ms ease, box-shadow 220ms ease; }
+    .hover-grow:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(2,6,23,0.06); }
+    .preview-box { background: linear-gradient(180deg,#ffffff, #fbfefe); border: 1px dashed #E8EEF0; border-radius: 12px; }
+    .timeline { position: relative; padding-left: 18px; }
+    .timeline::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg,var(--secondary), var(--accent)); border-radius: 2px; opacity: .95; }
+    .timeline-item { position: relative; padding: 12px 12px 12px 18px; margin-bottom: 8px; }
+    .timeline-item::before { content: ""; position: absolute; left: -2px; top: 18px; width: 10px; height: 10px; border-radius: 50%; background: white; border: 3px solid var(--primary); }
+    .stars { color: #F59E0B; display:flex; gap:4px; align-items:center; }
+    .glass { background: rgba(255,255,255,0.85); border: 1px solid rgba(11,22,25,0.03); backdrop-filter: blur(4px); }
+    .soft-divider { height:1px; background: linear-gradient(90deg, rgba(5,150,105,0.06), rgba(234,179,8,0.03)); margin: 28px 0; border-radius: 2px; }
+    @media (max-width:640px){ .hero-head{ font-size:1.375rem; } }
+    /* subtle card hover outline for premium feel */
+    .card-hover { transition: box-shadow .18s ease, transform .18s ease; }
+    .card-hover:hover { box-shadow: 0 22px 48px rgba(16,24,40,0.06); transform: translateY(-6px); }
+  </style>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23059669'/><text x='50' y='60' font-family='Inter' font-size='50' fill='white' text-anchor='middle'>Ｐ</text></svg>">
+</head>
+<body class="antialiased text-slate-900 bg-[color:var(--bg)]">
+
+  <!-- STICKY NAV -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-slate-100">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <a href="./index.html" class="flex items-center gap-3">
+            <svg class="w-10 h-10" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="4" width="56" height="56" rx="10" fill="#059669"/>
+              <path d="M22 38c5-7 20-7 24 0" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="26" cy="24" r="5" fill="white"/>
+            </svg>
+            <span class="font-semibold text-lg"><span style="color:var(--primary)">PranaOS</span><span class="text-slate-900">.store</span></span>
+          </a>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-4">
+          <a href="./products.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">Templates</a>
+          <a href="./walkthroughs.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">Walkthroughs</a>
+          <a href="./about.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">About</a>
+          <a href="./blog.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">Blog</a>
+          <a href="./contact.html" class="text-sm font-medium text-slate-600 hover:text-[color:var(--primary)] px-2 py-1 rounded">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="./checkout.html" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-md text-white brand-grad btn-primary shadow-sm">Buy templates</a>
+          <button id="menuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:bg-slate-100" aria-label="Open menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
+      <div class="absolute inset-0 bg-slate-900/60" id="mobileBackdrop"></div>
+      <div class="absolute top-12 right-4 left-4 bg-white rounded-xl shadow-lg p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <svg class="w-9 h-9" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="56" height="56" rx="10" fill="#059669"/><circle cx="26" cy="24" r="5" fill="white"/></svg>
+            <span class="font-semibold">Menu</span>
+          </div>
+          <button id="mobileClose" class="p-2 text-slate-700 rounded hover:bg-slate-100">✕</button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="./index.html" class="px-3 py-2 rounded hover:bg-slate-50">Home</a>
+          <a href="./products.html" class="px-3 py-2 rounded hover:bg-slate-50">Templates</a>
+          <a href="./walkthroughs.html" class="px-3 py-2 rounded hover:bg-slate-50">Walkthroughs</a>
+          <a href="./about.html" class="px-3 py-2 rounded hover:bg-slate-50">About</a>
+          <a href="./blog.html" class="px-3 py-2 rounded hover:bg-slate-50">Blog</a>
+          <a href="./contact.html" class="px-3 py-2 rounded hover:bg-slate-50">Contact</a>
+          <a href="./faq.html" class="px-3 py-2 rounded hover:bg-slate-50">FAQ</a>
+          <a href="./terms.html" class="px-3 py-2 rounded hover:bg-slate-50">Terms</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+
+<!-- CONTACT PAGE BODY -->
+
+    <!-- Success box (hidden by default; shown when ?submitted=1 is in the URL) -->
+    <div id="successBox" class="hidden mb-6 rounded-md bg-emerald-50 border border-emerald-100 p-4">
+      <strong class="block text-emerald-800">Message sent — thanks!</strong>
+      <p class="mt-1 text-sm text-emerald-700">We received your message and will reply to the email you provided. If you don’t see a reply after 48 hours, check spam or try support@prana.store.</p>
+    </div>
+
+    <section id="contact-form" class="bg-white border rounded-lg p-6 shadow-sm">
+      <h2 class="text-lg font-medium">Send us a message</h2>
+      <p class="mt-2 text-sm text-slate-600">For product support, include the product name and your order ID if possible.</p>
+
+      <form id="contact" class="mt-4 grid grid-cols-1 gap-4"
+            action="https://formsubmit.co/support@prana.store"
+            method="POST"
+            accept-charset="UTF-8">
+        <!-- dynamic _next will be filled by JS -->
+        <input type="hidden" name="_next" id="_next_redirect" value="">
+        <!-- prevent spam: honeypot -->
+        <input type="text" name="_honey" style="display:none">
+        <!-- disable CAPTCHA if you prefer: (FormSubmit also supports _captcha) -->
+        <input type="hidden" name="_captcha" value="false">
+
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700">Your name</span>
+          <input name="name" type="text" required class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="First Last">
+        </label>
+
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700">Email</span>
+          <input name="email" type="email" required class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="you@example.com">
+        </label>
+
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700">Subject</span>
+          <input name="subject" type="text" required class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="What is this about?">
+        </label>
+
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700">Message</span>
+          <textarea name="message" rows="6" required class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="Describe your issue or question..."></textarea>
+        </label>
+
+        <div class="flex items-center gap-3 mt-2">
+          <button type="submit" class="inline-flex items-center justify-center rounded-md bg-indigo-600 text-white px-4 py-2">Send message</button>
+          <a href="/support.html" class="text-sm text-slate-600">Support & FAQ</a>
+        </div>
+      </form>
+
+      <p class="mt-6 text-xs text-slate-500">By sending a message you agree we may contact you by email. We aim to reply within 48 hours.</p>
+    </section>
+
+
+
+
+    <!-- Become a partner (just above footer) -->
+    <section class="mt-12 bg-white rounded-xl p-6 shadow will-fade card-hover" data-fade>
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="text-lg font-bold">Become a partner</h3>
+          <p class="text-slate-600 mt-1">Share PranaOS templates with your audience — get affiliate codes, previews and a creator dashboard.</p>
+        </div>
+        <div class="flex gap-3">
+          <a href="./affiliate.html" class="px-4 py-2 rounded bg-[color:var(--primary)] text-white font-semibold">Get code</a>
+          <a href="./support.html" class="px-4 py-2 rounded border">Partner FAQ</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+<footer class="bg-white border-t mt-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid md:grid-cols-4 gap-6 items-start">
+    <div>
+      <div class="flex items-center gap-3">
+        <svg class="w-10 h-10" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="56" height="56" rx="10" fill="var(--primary)"/>
+          <circle cx="26" cy="24" r="5" fill="white"/>
+        </svg>
+        <div>
+          <div class="font-bold text-lg text-slate-900">PranaOS<span class="text-[color:var(--primary)]">.store</span></div>
+          <div class="text-sm text-slate-600">Practical Notion & Sheets templates • PDFs • AI prompt packs</div>
+        </div>
+      </div>
+
+      <div class="mt-4 space-y-2 text-sm">
+        <div><strong>Email:</strong> <a href="mailto:hello@pranaos.store" class="text-[color:var(--primary)]">hello@pranaos.store</a></div>
+        <div><strong>WhatsApp:</strong> <a href="https://wa.me/919234525942" target="_blank" rel="noopener" class="text-[color:var(--primary)]">+91 92345 25942</a></div>
+      </div>
+
+      <div class="mt-4">
+        <a href="./affiliate.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-white brand-grad font-semibold">Partner / Get code</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-2">Templates</div>
+      <nav class="text-sm text-slate-600 flex flex-col gap-2">
+        <a href="./products.html">All templates</a>
+        <a href="./products.html#daily-calm">Daily Calm</a>
+        <a href="./products.html#money-control">Money Control</a>
+        <a href="./products.html#faster-job-wins">Faster Job Wins</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-2">Company</div>
+      <nav class="text-sm text-slate-600 flex flex-col gap-2">
+        <a href="./about.html">About</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./contact.html">Contact</a>
+        <a href="./support.html">Support</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-2">Help & Legal</div>
+      <nav class="text-sm text-slate-600 flex flex-col gap-2">
+        <a href="./faq.html">FAQ</a>
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./refund.html">Refunds</a>
+        <a href="./docs.html">Docs</a>
+        <a href="./checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="border-t pt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center text-sm text-slate-500 pb-6">
+      © <strong>PranaOS.store</strong> — Built for creators & learners •
+    </div>
+  </div>
+</footer>
+
+
+  <!-- JS: menu + fade + lucide init -->
+
+  <script>
+/* Fractional star renderer: SVG + clipPath per-star for perfect partial fills
+   Usage: any container with class "stars" and attribute data-rating="4.8" will be rendered.
+*/
+    (function(){
+      function createStarSVG(fillFraction, size = 16){
+        // fillFraction: 0..1 for a single star
+        const viewBoxW = 24;
+        const clipWidth = Math.max(0, Math.min(1, fillFraction)) * viewBoxW;
+        const svgNS = 'http://www.w3.org/2000/svg';
+
+        const svg = document.createElementNS(svgNS, 'svg');
+        svg.setAttribute('width', size);
+        svg.setAttribute('height', size);
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.setAttribute('aria-hidden', 'true');
+
+        const defs = document.createElementNS(svgNS, 'defs');
+        const clip = document.createElementNS(svgNS, 'clipPath');
+        const clipId = 'clip-' + Math.random().toString(36).substring(2,9);
+        clip.setAttribute('id', clipId);
+        const rect = document.createElementNS(svgNS, 'rect');
+        rect.setAttribute('x', '0');
+        rect.setAttribute('y', '0');
+        rect.setAttribute('width', clipWidth.toString());
+        rect.setAttribute('height', '24');
+        clip.appendChild(rect);
+        defs.appendChild(clip);
+        svg.appendChild(defs);
+
+        const pathD = "M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.011 4.665 24 6 15.595 0 9.748l8.332-1.73z";
+
+        // base (empty) star
+        const base = document.createElementNS(svgNS, 'path');
+        base.setAttribute('d', pathD);
+        base.setAttribute('fill', '#e6eef0'); // empty color
+        svg.appendChild(base);
+
+        // filled star (clipped)
+        if (clipWidth > 0) {
+          const filled = document.createElementNS(svgNS, 'path');
+          filled.setAttribute('d', pathD);
+          filled.setAttribute('fill', '#F59E0B'); // gold
+          filled.setAttribute('clip-path', `url(#${clipId})`);
+          svg.appendChild(filled);
+        }
+
+        return svg;
+      }
+
+      function renderStarsIn(container, rating, max = 5, starSize = 14){
+        // clear container
+        container.innerHTML = '';
+        container.style.display = 'flex';
+        container.style.gap = '6px';
+        container.style.alignItems = 'center';
+        for(let i=0;i<max;i++){
+          const fraction = Math.max(0, Math.min(1, rating - i));
+          const star = createStarSVG(fraction, starSize);
+          container.appendChild(star);
+        }
+      }
+
+      // run on all .stars[data-rating]
+      function initStars(){
+        document.querySelectorAll('.stars[data-rating]').forEach(el => {
+          const raw = el.getAttribute('data-rating') || el.textContent || '0';
+          const rating = parseFloat(raw) || 0;
+          renderStarsIn(el, rating, 5, 14);
+        });
+
+        // also handle any .stars that don't have data-rating but exist (fallback)
+        document.querySelectorAll('.stars:not([data-rating])').forEach(el => {
+          // try to parse numeric sibling (like a text node) or default to 0
+          const near = el.nextElementSibling;
+          let rating = 0;
+          if (near && near.textContent && /[0-9.]+/.test(near.textContent)) {
+            rating = parseFloat(near.textContent) || 0;
+          }
+          renderStarsIn(el, rating, 5, 14);
+        });
+      }
+
+      // Make sure we run after DOMContentLoaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initStars);
+      } else {
+        initStars();
+      }
+    })();
+
+
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
+    const mobileClose = document.getElementById('mobileClose');
+
+    menuBtn?.addEventListener('click', () => { mobileMenu.classList.remove('hidden'); });
+    mobileClose?.addEventListener('click', () => { mobileMenu.classList.add('hidden'); });
+    mobileBackdrop?.addEventListener('click', (e) => { if (e.target === mobileBackdrop) mobileMenu.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') mobileMenu.classList.add('hidden'); });
+
+    const faders = document.querySelectorAll('[data-fade]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    faders.forEach(el => io.observe(el));
+
+    // newsletter handler (demo)
+    function handleNewsletter(){
+      const email = document.getElementById('newsletterEmail')?.value;
+      if(!email) return alert('Please enter email');
+      alert('Thanks — ' + email + ' — we will send occasional updates.');
+      document.getElementById('newsletterEmail').value = '';
+    }
+
+    // initialize lucide icons (convert data-lucide attributes to SVG)
+    document.addEventListener('DOMContentLoaded', () => {
+      try { lucide.createIcons(); } catch(e){ console.warn('Lucide init failed', e); }
+    });
+  </script>
+</body>
+</html>
