@@ -448,5 +448,68 @@
 
 
   </script>
+
+<script>
+(function(){
+document.addEventListener('DOMContentLoaded', () => {
+  // Try to find your support form by id first, otherwise find a form that posts to formsubmit.co
+  const form = document.getElementById('support') || document.querySelector('form[action*="formsubmit.co"]');
+  const successBox = document.getElementById('supportSuccess'); // your hidden success div (optional)
+  if (!form) {
+    console.warn('No form found with id="support" or action containing formsubmit.co — AJAX script not attached.');
+    return;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Use FormSubmit's AJAX endpoint
+    const url = (form.action || '').replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
+    const data = new FormData(form);
+
+    const submitBtn = form.querySelector('[type="submit"]');
+    const origText = submitBtn ? submitBtn.textContent : null;
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+
+    try {
+      const resp = await fetch(url, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' } // ask for JSON response
+      });
+      console.log('FormSubmit response status:', resp.status);
+
+      if (resp.ok) {
+        if (successBox) {
+          successBox.classList.remove('hidden');
+          successBox.classList.add('will-fade', 'in');
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          // fallback if success box missing
+          alert('Thanks — your message was sent.');
+        }
+        form.reset();
+      } else {
+        let text = 'Submission failed. Please try again.';
+        try {
+          const json = await resp.json();
+          if (json && json.message) text = json.message;
+        } catch (err) {}
+        alert(text);
+      }
+    } catch (err) {
+      console.error('Fetch/CORS error:', err);
+      alert('Network error or CORS issue. Serve this page over http(s) (e.g., python -m http.server) and check the console for details.');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        if (origText) submitBtn.textContent = origText;
+      }
+    }
+  });
+});
+})();
+</script>
+
 </body>
 </html>
