@@ -119,10 +119,7 @@
         <h2 class="text-lg font-medium">Open a support request</h2>
         <p class="mt-2 text-sm text-slate-600">Please include order ID and product name for fastest help.</p>
 
-        <form id="support" class="mt-4 grid grid-cols-1 gap-4"
-              action="https://formsubmit.co/support@pranaos.store"
-              method="POST"
-              accept-charset="UTF-8">
+        <form id="support" class="mt-4 grid grid-cols-1 gap-4" action="https://formsubmit.co/support@pranaos.store" method="POST" accept-charset="UTF-8">
           <input type="hidden" name="_next" id="_support_next" value="">
           <input type="text" name="_honey" style="display:none">
           <input type="hidden" name="_captcha" value="false">
@@ -398,6 +395,58 @@
     document.addEventListener('DOMContentLoaded', () => {
       try { lucide.createIcons(); } catch(e){ console.warn('Lucide init failed', e); }
     });
+
+
+
+  const form = document.getElementById('support');   // your form
+  const successBox = document.getElementById('supportSuccess'); // the hidden success div
+
+  if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // stop normal redirect
+
+      const url = form.action;           // formsubmit.co endpoint
+      const data = new FormData(form);   // collect form data
+
+      const submitBtn = form.querySelector('[type="submit"]');
+      const origText = submitBtn ? submitBtn.textContent : null;
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      }
+
+      try {
+        const resp = await fetch(url, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' } // ensures JSON response
+        });
+
+        if (resp.ok) {
+          // Show success message box
+          if (successBox) {
+            successBox.classList.remove('hidden');
+            successBox.classList.add('will-fade','in');
+            successBox.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+          form.reset(); // clear form after success
+        } else {
+          alert('Sorry — submission failed. Please try again.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error — please try again.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (origText) submitBtn.textContent = origText;
+        }
+      }
+    });
+
+
   </script>
 </body>
 </html>
