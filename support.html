@@ -106,14 +106,6 @@
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
 
-
-
-    <!-- Success box -->
-    <div id="supportSuccess" class="hidden mb-6 rounded-md bg-emerald-50 border border-emerald-100 p-4">
-      <strong class="block text-emerald-800">Request received</strong>
-      <p class="mt-1 text-sm text-emerald-700">We’ll reply to the email you provided as soon as possible. Typical response time: 24–48 hours.</p>
-    </div>
-
     <section id="support-form" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div class="lg:col-span-2 bg-white border rounded-lg p-6 shadow-sm">
         <h2 class="text-lg font-medium">Open a support request</h2>
@@ -188,7 +180,11 @@
     </section>
 
 
-
+        <!-- Success box -->
+    <div id="supportSuccess" class="hidden mb-6 rounded-md bg-emerald-50 border border-emerald-100 p-4">
+      <strong class="block text-emerald-800">Request received</strong>
+      <p class="mt-1 text-sm text-emerald-700">We’ll reply to the email you provided as soon as possible. Typical response time: 24–48 hours.</p>
+    </div>
 
 
     <!-- Become a partner (just above footer) -->
@@ -507,6 +503,35 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
+    const mobileClose = document.getElementById('mobileClose');
+
+    menuBtn?.addEventListener('click', () => { mobileMenu.classList.remove('hidden'); });
+    mobileClose?.addEventListener('click', () => { mobileMenu.classList.add('hidden'); });
+    mobileBackdrop?.addEventListener('click', (e) => { if (e.target === mobileBackdrop) mobileMenu.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') mobileMenu.classList.add('hidden'); });
+
+    const faders = document.querySelectorAll('[data-fade]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    faders.forEach(el => io.observe(el));
+
+    // newsletter handler (demo)
+    function handleNewsletter(){
+      const email = document.getElementById('newsletterEmail')?.value;
+      if(!email) return alert('Please enter email');
+      alert('Thanks — ' + email + ' — we will send occasional updates.');
+      document.getElementById('newsletterEmail').value = '';
+    }
+
+    // initialize lucide icons (convert data-lucide attributes to SVG)
+    document.addEventListener('DOMContentLoaded', () => {
+      try { lucide.createIcons(); } catch(e){ console.warn('Lucide init failed', e); }
+    });
 });
 })();
 </script>
