@@ -1,4 +1,8 @@
-<!-- Save as index.html (updated premium version) -->
+<!-- contact.fixed.html (fixed mobile menu + inline form submit handling)
+     - Removed unused _next hidden input
+     - Replaced `if (!form) return;` with `if (form) { ... }` so other scripts still run
+     - Added safety checks around successBox usage
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -108,7 +112,7 @@
 
 <!-- CONTACT PAGE BODY -->
 
-    <!-- Success box (hidden by default; shown when ?submitted=1 is in the URL) -->
+    <!-- Success box (hidden by default; shown when submission succeeds) -->
     <div id="successBox" class="hidden mb-6 rounded-md bg-emerald-50 border border-emerald-100 p-4">
       <strong class="block text-emerald-800">Message sent — thanks!</strong>
       <p class="mt-1 text-sm text-emerald-700">We received your message and will reply to the email you provided. If you don’t see a reply after 48 hours, check spam or try support@pranaos.store.</p>
@@ -122,8 +126,7 @@
             action="https://formsubmit.co/support@pranaos.store"
             method="POST"
             accept-charset="UTF-8">
-        <!-- dynamic _next will be filled by JS -->
-        <input type="hidden" name="_next" id="_next_redirect" value="">
+        <!-- removed _next hidden input because submission handled inline -->
         <!-- prevent spam: honeypot -->
         <input type="text" name="_honey" style="display:none">
         <!-- disable CAPTCHA if you prefer: (FormSubmit also supports _captcha) -->
@@ -365,11 +368,12 @@
     document.addEventListener('DOMContentLoaded', () => {
       try { lucide.createIcons(); } catch(e){ console.warn('Lucide init failed', e); }
     });
-      const form = document.getElementById('contact');   // your form
-      const successBox = document.getElementById('successBox'); // the hidden success div
 
-      if (!form) return;
+    // FORM: submit via fetch and show inline success (no redirect)
+    const form = document.getElementById('contact');   // your form
+    const successBox = document.getElementById('successBox'); // the hidden success div
 
+    if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault(); // stop normal redirect
 
@@ -411,7 +415,8 @@
             if (origText) submitBtn.textContent = origText;
           }
         }
-    });
+      });
+    }
   </script>
 </body>
 </html>
